@@ -1,0 +1,24 @@
+name: Metrics
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # todo dia à meia-noite
+  workflow_dispatch:
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: gyamada22
+
+          # desliga tudo
+          base: ""
+
+          # liga só total de contribuições
+          plugin_activity: yes
+          plugin_activity_limit: 1
+          plugin_activity_days: 365
+          plugin_activity_filter: all
